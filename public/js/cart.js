@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle purchase button click
   purchaseBtn.addEventListener("click", () => {
     if (cart.length > 0) {
-      alert("Thank you for your purchase!");
       localStorage.removeItem("cart"); // Clear the cart
       window.location.href = "bus-pass.html"; // Redirect to the main page
     } else {
