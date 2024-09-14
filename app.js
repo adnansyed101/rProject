@@ -2,6 +2,10 @@ const path = require("path");
 const uniqueId = require("uniqid");
 const express = require("express");
 const app = express();
+const cartController = require("./controllers/cartController");
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 const PORT = 3000;
 
@@ -12,6 +16,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+app.get("/cart", cartController.getAllTrips);
+
+// SSLCommerzPayement Gateway start
 const SSLCommerzPayment = require("sslcommerz-lts");
 const store_id = "ulabs66e064197c826";
 const store_passwd = "ulabs66e064197c826@ssl";
@@ -23,7 +30,7 @@ app.get("/init", (req, res) => {
     total_amount: 1,
     currency: "BDT",
     tran_id: uniqueId(), // use unique tran_id for each api call
-    success_url: "http://localhost:3000/html/cart.html",
+    success_url: "http://localhost:3000/success",
     fail_url: "http://localhost:3000/fail",
     cancel_url: "http://localhost:3000/cancel",
     ipn_url: "http://localhost:3000/ipn",
