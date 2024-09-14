@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bus Pass Purchase</title>
+    <!-- Link to Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/bus-pass.css" />
+    <!-- JS -->
+    <script src="../js/bus-pass.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <img src="../assets/ulab-logo.png" alt="Logo" class="logo" />
+        <nav class="navigation">
+          <ul>
+            <li>
+              <a href="#"><i class="fas fa-user"></i> My Account</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-history"></i> Payment History</a>
+            </li>
+            <li>
+              <a href="/cart">
+                <i class="fas fa-shopping-cart"></i> Cart
+                <span class="cart-notification">0</span>
+                <!-- Cart notification -->
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="bus-pass-options">
+        <h2><i class="fas fa-bus"></i> Buy a Bus Pass</h2>
+        <% for (const trip of indivualTrip) { %>
+        <div class="pass-option">
+          <h3><i class="fas fa-ticket-alt"></i> <%= trip.tripname %></h3>
+          <p>Tk: <%= trip.price %></p>
+          <form action="/bus-pass" method="POST">
+            <button type="submit" name="id" value="<%= trip.triptypeid %>">
+              <i class="fas fa-shopping-cart"></i> Buy Now
+            </button>
+          </form>
+        </div>
+        <% } %>
+      </section>
+
+      <section class="terms-conditions">
+        <h2>Terms and Conditions</h2>
+        <ul>
+          <li>The bus pass is non-transferable and non-refundable.</li>
+          <li>The pass must be presented upon boarding the bus.</li>
+          <li>Lost passes will not be replaced.</li>
+          <li>The pass is valid only for the specified number of trips.</li>
+          <li>
+            Additional terms may apply, please refer to the university's
+            transportation policy.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Your University. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

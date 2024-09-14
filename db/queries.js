@@ -8,6 +8,18 @@ async function getAllTripsFromDb() {
   return rows;
 }
 
+async function getAllIndividualTripFromDb() {
+  const { rows } = await pool.query("SELECT * FROM triptypes");
+
+  return rows;
+}
+
+async function insertIntoTripsDb(id) {
+  await pool.query("INSERT INTO trips (triptypeid) VALUES ($1)", [id]);
+}
+
 module.exports = {
-    getAllTripsFromDb,
+  getAllTripsFromDb,
+  getAllIndividualTripFromDb,
+  insertIntoTripsDb,
 };

@@ -3,9 +3,11 @@ const uniqueId = require("uniqid");
 const express = require("express");
 const app = express();
 const cartController = require("./controllers/cartController");
+const busPassController = require("./controllers/busPassController");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = 3000;
 
@@ -17,6 +19,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/cart", cartController.getAllTrips);
+app.get("/bus-pass", busPassController.getAllIndividualTrip);
+app.post("/bus-pass", busPassController.postInsertCart);
 
 // SSLCommerzPayement Gateway start
 const SSLCommerzPayment = require("sslcommerz-lts");

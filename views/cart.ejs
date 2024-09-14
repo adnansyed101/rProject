@@ -38,12 +38,18 @@
       <section class="cart-items">
         <% for (const trip of trips) { %>
         <div class="cart-item">
-          <p><%= trip.tripid %></p>
           <h4><%= trip.tripname %></h4>
-          <p><%= trip.price %></p>
-          <button class="trashBtn">
-            <i class="fa-solid fa-trash"></i>
-          </button>
+          <p>TK <%= trip.price %></p>
+          <form action="/cart" method="DELETE">
+            <button
+              class="trashBtn"
+              type="submit"
+              name="id"
+              value="<%= trip.tripid %>"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
         </div>
         <% } %>
       </section>
