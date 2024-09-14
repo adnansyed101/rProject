@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ULAB Digital Shuttle Service</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <img src="assets/ulab-logo.png" alt="ULAB Logo" class="logo" />
+        <nav>
+          <ul>
+            <li><a href="#">Staff</a></li>
+            <li><a href="#">Schedule</a></li>
+            <li><a href="#">Route map</a></li>
+            <li><a href="#">About Us</a></li>
+            <li>
+              <a
+                href="https://admissions.ulab.edu.bd/?_gl=1*18d60qx*_ga*MTM0Mjc2MjE4NC4xNzIyMjMyMjk4*_ga_G3NJ3B5238*MTcyMzYzMzY1MS44LjAuMTcyMzYzMzY1MS42MC4wLjA."
+                >Admissions</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="header-buttons">
+          <a
+            href="https://oam.ulab.edu.bd/?_gl=1*vsn7tt*_ga*MTM0Mjc2MjE4NC4xNzIyMjMyMjk4*_ga_G3NJ3B5238*MTcyMzU2MTI3Ni42LjAuMTcyMzU2MTI3Ni42MC4wLjA."
+            class="apply-now"
+            >Apply Now</a
+          >
+          <a href="html/sign-up.html" class="sign-in">Sign In</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="booking-container">
+        <div>
+          <img src="assets/logo.png" alt="Bus logo" class="logo-icon" />
+        </div>
+        <h2>Student Login.</h2>
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <div class="forgot-password">
+          <a href="html/forgot-pass.html">Forgot Password?</a>
+        </div>
+
+        <div class="button1">
+          <a href="html/bus-pass.html" class="btn-signin">Sign In</a>
+        </div>
+        <div class="signup-prompt">
+          <p>Don't have an account?</p>
+        </div>
+        <div class="button2">
+          <a href="html/sign-up.html" class="btn-signup">Sign Up</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <img src="assets/campus.jpg" alt="Bus Icon" class="bus-icon" />
+      </div>
+      <div class="copyright">
+        <p>
+          &copy; 2006-2024 UNIVERSITY OF LIBERAL ARTS BANGLADESH. All Rights
+          Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <div class="moon"></div>
+    <div class="sun"></div>
+
+    <div class="cloud-container">
+      <div class="clouds cloud1"></div>
+      <div class="clouds cloud2"></div>
+      <div class="clouds cloud3"></div>
+    </div>
+    <script>
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        const moon = document.querySelector(".moon");
+        const sun = document.querySelector(".sun");
+        const scrollPosition = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const scrollPercentage = scrollPosition / maxScroll;
+
+        header.classList.toggle("shrink", scrollPosition > 50);
+
+        const gradientStartColor = [0, 115, 177];
+        const gradientEndColor = [40, 209, 152];
+        const newColor = gradientStartColor.map((start, index) => {
+          const end = gradientEndColor[index];
+          return Math.round(start + (end - start) * scrollPercentage);
+        });
+
+        document.body.style.background = `linear-gradient(to bottom, rgb(${newColor.join(
+          ","
+        )}) 0%, white 100%)`;
+
+        const moonX = scrollPercentage * 50;
+        const moonY = scrollPercentage * -110;
+        moon.style.transform = `translate(${moonX}px,${moonY}px)`;
+
+        const sunX = scrollPercentage * 90;
+        const sunY = scrollPercentage * -130;
+        sun.style.transform = `translate(${sunX}px, ${sunY}px)`;
+      });
+    </script>
+  </body>
+</html>
