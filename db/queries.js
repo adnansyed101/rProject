@@ -22,7 +22,18 @@ async function countCartRowsFromDb() {
 }
 
 async function deleteItemFromCart(id) {
-  await pool.query("DELETE FROM trips WHERE tripid =" + id);
+  await pool.query("DELETE FROM trips WHERE tripid = " + id);
+}
+
+async function getTotalAmountFromDb() {
+  const { rows } = await pool.query(
+    "SELECT SUM(price) FROM trips JOIN triptypes ON trips.triptypeid = triptypes.triptypeid"
+  );
+  return rows[0].sum;
+}
+
+async function deleteRowsAndRestart() {
+  await pool.query("TRUNCATE TABLE trips RESTART IDENTITY");
 }
 
 module.exports = {
@@ -31,4 +42,6 @@ module.exports = {
   insertIntoTripsDb,
   countCartRowsFromDb,
   deleteItemFromCart,
+  getTotalAmountFromDb,
+  deleteRowsAndRestart,
 };

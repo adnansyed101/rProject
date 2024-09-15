@@ -1,4 +1,5 @@
 const uniqueId = require("uniqid");
+const db = require("../db/queries");
 
 // SSLCommerzPayement Gateway start
 const SSLCommerzPayment = require("sslcommerz-lts");
@@ -6,12 +7,13 @@ const store_id = "ulabs66e064197c826";
 const store_passwd = "ulabs66e064197c826@ssl";
 const is_live = false; //true for live, false for sandbox
 
-function sslIntialize(req, res) {
+async function sslIntialize(req, res) {
+  const totalAmount = await db.getTotalAmountFromDb();
   const data = {
-    total_amount: 1,
+    total_amount: totalAmount,
     currency: "BDT",
     tran_id: uniqueId(), // use unique tran_id for each api call
-    success_url: "http://localhost:3000/bus-pass",
+    success_url: "http://localhost:3000/success",
     fail_url: "http://localhost:3000/fail",
     cancel_url: "http://localhost:3000/cancel",
     ipn_url: "http://localhost:3000/ipn",
@@ -46,6 +48,12 @@ function sslIntialize(req, res) {
   });
 }
 
+async function successRoute(req, res) {
+  await db.deleteRowsAndRestart();
+  res.redirect("/bus-pass");
+}
+
 module.exports = {
   sslIntialize,
+  successRoute,
 };

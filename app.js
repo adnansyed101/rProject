@@ -23,7 +23,7 @@ app.get("/cart", cartController.getAllTrips);
 app.get("/bus-pass", busPassController.getAllIndividualTrip);
 app.post("/bus-pass", busPassController.postInsertCart);
 app.delete("/cart/:id", cartController.deleteTrip);
-
+app.post("/success", sslcommerz.successRoute);
 
 //sslcommerz init
 app.get("/init", sslcommerz.sslIntialize);
