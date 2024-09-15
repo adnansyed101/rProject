@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/cart.css" />
+    <link rel="stylesheet" href="css/cart.css" />
     <!-- JS -->
     <!-- <script src="../js/cart.js" defer></script> -->
   </head>
@@ -40,16 +40,7 @@
         <div class="cart-item">
           <h4><%= trip.tripname %></h4>
           <p>TK <%= trip.price %></p>
-          <form action="/cart" method="DELETE">
-            <button
-              class="trashBtn"
-              type="submit"
-              name="id"
-              value="<%= trip.tripid %>"
-            >
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </form>
+          <a class="trashBtn" data-doc="<%= trip.tripid %>"> DELETE </a>
         </div>
         <% } %>
       </section>
@@ -64,5 +55,21 @@
     <footer>
       <p>&copy; 2024 Your University. All Rights Reserved.</p>
     </footer>
+
+    <script>
+      const trashCans = document.getElementsByClassName("trashBtn");
+      for (const trashCan of trashCans) {
+        trashCan.addEventListener("click", function (e) {
+          const endpoint = "/cart/" + trashCan.dataset.doc;
+
+          fetch(endpoint, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => (window.location.href = data.redirect))
+            .catch((err) => console.log(err));
+        });
+      }
+    </script>
   </body>
 </html>

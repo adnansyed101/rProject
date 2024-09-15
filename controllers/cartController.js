@@ -9,6 +9,18 @@ async function getAllTrips(req, res) {
   res.render("cart", { trips: trips, total: total });
 }
 
+async function deleteTrip(req, res) {
+  const id = req.params.id;
+
+  await db
+    .deleteItemFromCart(id)
+    .then((result) => {
+      res.json({ redirect: "/cart" });
+    })
+    .catch((err) => console.log(err));
+}
+
 module.exports = {
   getAllTrips,
+  deleteTrip
 };

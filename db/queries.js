@@ -18,8 +18,11 @@ async function insertIntoTripsDb(id) {
 
 async function countCartRowsFromDb() {
   const { rows } = await pool.query("SELECT COUNT(*) FROM trips");
-  console.log(rows);
   return rows;
+}
+
+async function deleteItemFromCart(id) {
+  await pool.query("DELETE FROM trips WHERE tripid =" + id);
 }
 
 module.exports = {
@@ -27,4 +30,5 @@ module.exports = {
   getAllIndividualTripFromDb,
   insertIntoTripsDb,
   countCartRowsFromDb,
+  deleteItemFromCart,
 };

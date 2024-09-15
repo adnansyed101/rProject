@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 app.get("/cart", cartController.getAllTrips);
 app.get("/bus-pass", busPassController.getAllIndividualTrip);
 app.post("/bus-pass", busPassController.postInsertCart);
+app.delete("/cart/:id", cartController.deleteTrip);
 
 // SSLCommerzPayement Gateway start
 const SSLCommerzPayment = require("sslcommerz-lts");
