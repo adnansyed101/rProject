@@ -9,9 +9,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/bus-pass.css" />
+    <link rel="stylesheet" href="css/bus-pass.css" />
     <!-- JS -->
-    <script src="../js/bus-pass.js" defer></script>
+    <!-- <script src="js/bus-pass.js" defer></script> -->
   </head>
   <body>
     <header>
@@ -28,7 +28,7 @@
             <li>
               <a href="/cart">
                 <i class="fas fa-shopping-cart"></i> Cart
-                <span class="cart-notification">0</span>
+                <span class="cart-notification"><%= cartTotalTrips %></span>
                 <!-- Cart notification -->
               </a>
             </li>
