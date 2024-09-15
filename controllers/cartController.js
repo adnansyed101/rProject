@@ -1,19 +1,20 @@
 const db = require("../db/queries");
 
-async function getAllTrips(req, res) {
-  const trips = await db.getAllTripsFromDb();
+async function getAllCartItems(req, res) {
+  const cartItems = await db.getAllCartItemsFromDb();
+
   let total = 0;
-  for (const trip of trips) {
-    total = total + parseInt(trip.price);
+  for (const item of cartItems) {
+    total = total + parseInt(item.price);
   }
-  res.render("cart", { trips: trips, total: total });
+  res.render("cart", { cartItems: cartItems, total: total });
 }
 
-async function deleteTrip(req, res) {
+async function deleteCartItem(req, res) {
   const id = req.params.id;
 
   await db
-    .deleteItemFromCart(id)
+    .deleteItemInCartFromDb(id)
     .then((result) => {
       res.json({ redirect: "/cart" });
     })
@@ -21,6 +22,6 @@ async function deleteTrip(req, res) {
 }
 
 module.exports = {
-  getAllTrips,
-  deleteTrip
+  getAllCartItems,
+  deleteCartItem,
 };

@@ -49,7 +49,7 @@ async function sslIntialize(req, res) {
 }
 
 async function successRoute(req, res) {
-  await db.deleteRowsAndRestart();
+  await db.deleteCartData();
   res.redirect("/bus-pass");
 }
 

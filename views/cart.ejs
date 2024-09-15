@@ -36,13 +36,14 @@
     <main>
       <h2>Your Cart</h2>
       <section class="cart-items">
-        <% for (const trip of trips) { %>
+        <% cartItems.forEach(function (trip, index) { %>
         <div class="cart-item">
+          <p><%= index + 1 %></p>
           <h4><%= trip.tripname %></h4>
           <p>TK <%= trip.price %></p>
-          <a class="trashBtn" data-doc="<%= trip.tripid %>"> DELETE </a>
+          <a class="trashBtn" data-doc="<%= trip.cartitemid %>"> DELETE</a>
         </div>
-        <% } %>
+        <% }) %>
       </section>
       <div class="cart-summary">
         <h3>Total: TK <%= total %></h3>

@@ -1,18 +1,18 @@
 const pool = require("./pool");
 
-async function getAllTripsFromDb() {
+async function getAllCartItemsFromDb() {
   const { rows } = await pool.query(
     "SELECT cartitemid, tripname, price FROM cart JOIN triptypes ON cart.triptypeid = triptypes.triptypeid"
   );
   return rows;
 }
 
-async function getAllIndividualTripFromDb() {
+async function getAllTripTypesFromDb() {
   const { rows } = await pool.query("SELECT * FROM triptypes");
   return rows;
 }
 
-async function insertIntoTripsDb(id) {
+async function insertIntoCartDb(id) {
   await pool.query("INSERT INTO cart (triptypeid) VALUES ($1)", [id]);
 }
 
@@ -21,8 +21,8 @@ async function countCartRowsFromDb() {
   return rows;
 }
 
-async function deleteItemFromCart(id) {
-  await pool.query("DELETE FROM cart WHERE tripid = " + id);
+async function deleteItemInCartFromDb(id) {
+  await pool.query("DELETE FROM cart WHERE cartitemid = " + id);
 }
 
 async function getTotalAmountFromDb() {
@@ -32,16 +32,16 @@ async function getTotalAmountFromDb() {
   return rows[0].sum;
 }
 
-async function deleteRowsAndRestart() {
+async function deleteCartData() {
   await pool.query("TRUNCATE TABLE cart RESTART IDENTITY");
 }
 
 module.exports = {
-  getAllTripsFromDb,
-  getAllIndividualTripFromDb,
-  insertIntoTripsDb,
+  getAllCartItemsFromDb,
+  getAllTripTypesFromDb,
+  insertIntoCartDb,
   countCartRowsFromDb,
-  deleteItemFromCart,
+  deleteItemInCartFromDb,
   getTotalAmountFromDb,
-  deleteRowsAndRestart,
+  deleteCartData,
 };

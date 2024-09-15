@@ -19,10 +19,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/cart", cartController.getAllTrips);
-app.get("/bus-pass", busPassController.getAllIndividualTrip);
-app.post("/bus-pass", busPassController.postInsertCart);
-app.delete("/cart/:id", cartController.deleteTrip);
+app.get("/cart", cartController.getAllCartItems);
+app.get("/bus-pass", busPassController.getAllTripTypes);
+app.post("/bus-pass", busPassController.insertIntoCart);
+app.delete("/cart/:id", cartController.deleteCartItem);
 app.post("/success", sslcommerz.successRoute);
 
 //sslcommerz init
