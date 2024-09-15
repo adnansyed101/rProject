@@ -47,9 +47,11 @@
       </section>
       <div class="cart-summary">
         <h3>Total: TK <%= total %></h3>
-        <button id="purchase-btn">
-          <a href="/init">Proceed and Checkout</a>
-        </button>
+        <% if(cartItems.length > 0) { %>
+        <a id="purchase-btn" href="/init">Proceed and Checkout</a>
+        <% } else { %>
+        <a id="purchase-btn" href="/bus-pass">Add Trips</a>
+        <%} %>
       </div>
     </main>
 
